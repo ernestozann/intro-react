@@ -1,7 +1,8 @@
 import React from 'react';
 import { TodoContext } from '../TodoContext';
-import { TodoCounter } from '../TodoCounter/index';
+import { TodoHeader } from '../TodoHeader/index';
 import { TodoSearch } from '../TodoSearch/index';
+import { TodoCounter } from '../TodoCounter/index';
 import { TodoList } from '../TodoList/index';
 import { TodoItem } from '../TodoItem/index';
 import { TodoForm } from '../TodoForm/index';
@@ -20,12 +21,24 @@ function AppUI() {
     deleteTodo,
     openModal,
     setOpenModal,
+    totalTodos,
+    completedTodos,
+    searchValue,
+    setSearchValue,
   } = React.useContext(TodoContext);
 
 	return (
 		<React.Fragment>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoHeader>
+        <TodoCounter 
+          totalTodos={totalTodos}
+          completedTodos={completedTodos}
+        />
+        <TodoSearch 
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+      </TodoHeader>
 
       <TodoList>
         {error && <TodoError error={error}/>}
