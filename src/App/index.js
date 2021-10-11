@@ -11,6 +11,7 @@ import { Modal } from '../Modal';
 import { TodoError } from '../TodoError';
 import { TodoLoading } from '../TodoLoading';
 import { EmptyTodos } from '../EmptyTodos';
+import { EmptySearchResult } from '../EmptySearchResult';
 import './App.css';
 
 function App() {
@@ -46,10 +47,24 @@ function App() {
 				error={error}
 				loading={loading}
 				searchedTodos={searchedTodos}
+				totalTodos={totalTodos}
+				searchText={searchValue}
 				onError={() => <TodoError />}
 				onLoading={() => <TodoLoading />}
 				onEmptyTodos={() => <EmptyTodos />}
-				render={todo => (
+				onEmptySearchResult={(searchText) => <EmptySearchResult />}
+				
+        // render={todo => (
+				// 	<TodoItem
+        //     key={todo.text}
+        //     text={todo.text}
+        //     completed={todo.completed}
+        //     onComplete={() => completeTodo(todo.text)}
+        //     onDelete={() => deleteTodo(todo.text)}
+        //   />
+				// )}
+			>
+        {todo => (
 					<TodoItem
             key={todo.text}
             text={todo.text}
@@ -58,7 +73,7 @@ function App() {
             onDelete={() => deleteTodo(todo.text)}
           />
 				)}
-			/>
+      </TodoList>
 
       {!!openModal && (
         <Modal>
