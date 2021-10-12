@@ -4,12 +4,26 @@ function withStorageListener(WrappedComponent) {
 	return function WrappedComponentWithStorageListener(props) {
 		const [storageChange, setStorageChange] = React.useState(false);
 		
-		return 
+		window.addEventListener('storage', (change) => {
+			if (change.key === 'TODOS_V1') {
+				console.log("changes on TODOS_V1");
+				setStorageChange(true);
+			} else {
+				
+			}
+		});
+
+		const toggleShow = () => {
+			props.sincronize();
+			setStorageChange(false);
+		};
+
+		return (
 			<WrappedComponent 
 				show={storageChange}
-				toggleShow={setStorageChange}
-			/>;
-	}
+				toggleShow={toggleShow}
+			/>
+		)}
 }
 
 export { withStorageListener };
