@@ -12,6 +12,7 @@ import { TodoError } from '../TodoError';
 import { TodoLoading } from '../TodoLoading';
 import { EmptyTodos } from '../EmptyTodos';
 import { EmptySearchResult } from '../EmptySearchResult';
+import { ChangeAlertWithStorageListener } from '../ChangeAlert';
 import './App.css';
 
 function App() {
@@ -87,6 +88,8 @@ function App() {
       <CreateTodoButton 
         setOpenModal={setOpenModal}
       />
+
+      <ChangeAlertWithStorageListener />
     </React.Fragment>
 	);
 }
